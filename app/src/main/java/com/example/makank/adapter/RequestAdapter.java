@@ -72,7 +72,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                 SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                 final String my_id = sharedPreference.getString(USER_ID, "id");
                 final int owner_id = requestList.get(position).getOwner_id();
-                Toast.makeText(context, accept + "", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, accept + "", Toast.LENGTH_SHORT).show();
+
                 postRequest(my_id, owner_id, accept);
             }
         });
@@ -138,9 +139,12 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
             public void onResponse(Call<Request> call, Response<Request> response) {
 
                 if (response.isSuccessful()) {
-                    //  progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
+                    if (response.body().equals(true))
+                    //  progressDoalog.dismiss();
                     alert.showAlertSuccess("تم قبول الطلب");
+                    else
+                        alert.showAlertSuccess("تم رفض الطلب");
                     //Toast.makeText(context, "don", Toast.LENGTH_SHORT).show();
                 }
             }

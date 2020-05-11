@@ -24,6 +24,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.makank.R;
+import com.example.makank.data.model.Person;
 import com.example.makank.ui.activity.Steper;
 import com.example.makank.ui.activity.SendNotifActivity;
 import com.example.makank.ui.activity.ContactActivity;
@@ -35,6 +36,7 @@ import java.util.List;
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHolider> {
     private Context context;
     private List<Home> items;
+
 
     public GridAdapter(List<Home> items, Context context) {
         this.context = context;
@@ -58,7 +60,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
         final Home item = items.get(position);
         holder.categoryText.setText(item.getName());
         holder.categoryImage.setImageResource(item.image);
-        holder.categoryImage.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (item.getId() == 1) {
